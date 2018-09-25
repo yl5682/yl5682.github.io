@@ -1,0 +1,108 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Text Change Example</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <style>
+    .v-word:hover {
+      cursor: pointer;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+  <div class="container" id="app">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Emdash Prototype</h1>
+        <h2>I never hear that one is dead </h2>
+
+        <p>
+          <div class="line">I never hear that one is dead</div>
+          <div class="line">Without the Chance of Life</div>
+          <div class="line">Afresh annihilating me</div>
+          <div class="line"><v-word :words="['Her', 'His', 'My']"></v-word> mightiest Belief,</div>
+        </p>
+
+        <p>
+          <div class="line">Too mighty for the <v-word :words="['Daily', 'Weekly', 'Monthly']"></v-word> mind</div>
+          <div class="line">That tilling its’ abyss,</div>
+          <div class="line">Had Madness, had it once or, Twice</div>
+          <div class="line">The yawning <v-word :words="['Dog', 'Bird', 'Cat']"></v-word></div>
+        </p>
+
+        <p>
+          <div class="line">Beliefs are Bandaged, like the Tongue</div>
+          <div class="line">When Terror were it told</div>
+          <div class="line">in any Tone commensurate</div>
+          <div class="line">Would strike us instant Dead –</div>
+        </p>
+
+        <p>
+          <div class="line">I do not know the man so bold</div>
+          <div class="line">He dare in lonely Place</div>
+          <div class="line">That awful stranger – Consciousness</div>
+          <div class="line"><v-word :words="['Smiley', 'Crying', 'Poker']"></v-word> face</div>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+<script>
+  // Define a new component called button-counter
+  Vue.component('v-word', {
+    props: ["words"],
+    data: function() {
+      return {
+        currentIndex: 0,
+      }
+    },
+    template: '<span class="v-word" @click=shift><sup>+</sup>{{currentWord}}</span>',
+    methods: {
+      shift: function() {
+        var next = this.currentIndex + 1;
+        if (next < this.words.length) {
+          Vue.set(this, "currentIndex", this.currentIndex + 1);
+        } else {
+          Vue.set(this, "currentIndex", 0);
+        }
+      }
+    },
+    computed: {
+      currentWord: function() {
+        return this.words[this.currentIndex];
+      }
+    }
+  })
+
+  var app = new Vue({
+    el: '#app',
+  })
+</script>
+
+</html>
