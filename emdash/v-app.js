@@ -43,7 +43,7 @@
         currentIndex: 0, // records the currently visible child, a v-element
       }
     },
-    template: '<div class="v-paragraph" @click=shift><slot></slot></div>',
+    template: '<div class="v-paragraph"><sub class="v-sub" @click=shift>+</sub><slot></slot></div>',
     methods: {
       // shift method that will iterate through the children of v-paragraph
       shift: function() {
