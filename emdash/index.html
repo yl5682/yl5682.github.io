@@ -16,12 +16,8 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-  <style>
-    .v-word:hover {
-      cursor: pointer;
-      opacity: 0.5;
-    }
-  </style>
+  <link rel="stylesheet" href="v-style.css">
+
 </head>
 
 <body>
@@ -31,7 +27,7 @@
 
   <!-- Add your site or application content here -->
 
-  <div class="container" id="app">
+  <div class="container" id="app" v-cloak>
     <div class="row">
       <div class="col-md-12">
         <h1>Emdash Prototype</h1>
@@ -50,6 +46,36 @@
           <div class="line">Had Madness, had it once or, Twice</div>
           <div class="line">The yawning <v-word :words="['Dog', 'Bird', 'Cat']"></v-word></div>
         </p>
+
+        <v-paragraph>
+          <v-element>
+            <p>
+              Or you can only have one paragraph
+            </p>
+          </v-element>
+          <v-element :default="true">
+            <p>
+              One way to parse this poem is to have
+              <br/>
+              two paragraphs
+            </p>
+          </v-element>
+          <v-element>
+            <p>
+              You
+              <br/>
+              Can
+              <br/>
+              Go
+              <br/>
+              Crazy
+              <br/>
+              Like
+              <br/>
+              This
+            </p>
+          </v-element>
+        </v-paragraph>
 
         <p>
           <div class="line">Beliefs are Bandaged, like the Tongue</div>
@@ -72,36 +98,11 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-
+<script src="v-app.js"></script>
 <script>
-  // Define a new component called button-counter
-  Vue.component('v-word', {
-    props: ["words"],
-    data: function() {
-      return {
-        currentIndex: 0,
-      }
-    },
-    template: '<span class="v-word" @click=shift><sup>+</sup>{{currentWord}}</span>',
-    methods: {
-      shift: function() {
-        var next = this.currentIndex + 1;
-        if (next < this.words.length) {
-          Vue.set(this, "currentIndex", this.currentIndex + 1);
-        } else {
-          Vue.set(this, "currentIndex", 0);
-        }
-      }
-    },
-    computed: {
-      currentWord: function() {
-        return this.words[this.currentIndex];
-      }
-    }
-  })
-
+  // the main app
   var app = new Vue({
-    el: '#app',
+    el: '#app', // el defines your html template tag
   })
 </script>
 
